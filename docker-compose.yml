@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    image: node:14
+    env_file: .env
+    ports:
+      - 127.0.0.1:3333:3333
+    working_dir: /app
+    command: ['node', 'ace', 'serve', '-w']
+    volumes:
+      - ./:/app
+
+  mongo:
+    image: mongo:4
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 127.0.0.1:8081:8081
+
+volumes:
+  mongo-data:
