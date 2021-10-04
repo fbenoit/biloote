@@ -1,4 +1,4 @@
-import { Db, MongoClient } from 'mongodb'
+import { Collection, Db, MongoClient } from 'mongodb'
 
 export class MongoProvider {
   private static client: MongoClient
@@ -14,13 +14,17 @@ export class MongoProvider {
     return this.database
   }
 
+  public static getCollection(collectionName: string): Collection {
+    return this.database.collection(collectionName)
+  }
+
   public static async close() {
     await this.client.close()
   }
 
   public static async seed() {
-    const clientsCollection = this.database.collection('clients')
-    const vehiclesCollection = this.database.collection('vehicles')
+    const clientsCollection = this.getCollection('clients')
+    const vehiclesCollection = this.getCollection('vehicles')
     const count = await clientsCollection.countDocuments()
     if (count > 0) {
       return

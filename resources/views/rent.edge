@@ -1,0 +1,36 @@
+@layout('layouts/main')
+@section('body')
+<div>
+  <h1 class="title">Louer un(e) {{ vehicleTypeName }}</h1>
+
+  <form>
+    <fieldset>
+      <label for="clients">Vous êtes</label>
+      <select id="clients">
+        @each(client in clients)
+          <option value="{{ client.id }}">{{ client.firstName }} {{ client.lastName }}</option>
+        @end
+      </select>
+
+      <label for="vehicles">Véhicules disponibles</label>
+      <select id="vehicles">
+        @each(vehicle in vehicles)
+          <option value="{{ vehicle.id }}">{{ vehicle.name }}</option>
+        @end
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <label for="startDate">Date de début</label>
+      <input type="date" id="startDate">
+
+      <label for="endDate">Date de fin</label>
+      <input type="date" id="endDate">
+    </fieldset>
+
+    <input type="submit" />
+  </form>
+
+  <p><a href="/">Retour</a></p>
+</div>
+@end
