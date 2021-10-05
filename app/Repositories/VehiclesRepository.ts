@@ -1,4 +1,4 @@
-import { Collection, Document } from 'mongodb'
+import { Collection, Document, ObjectId } from 'mongodb'
 import { Vehicle, VehicleType } from '../../domain/types/vehicle'
 import { MongoProvider } from '../../providers/MongoProvider'
 
@@ -7,6 +7,11 @@ export default class VehiclesRepository {
 
   constructor() {
     this.vehiclesCollection = MongoProvider.getCollection('vehicles')
+  }
+
+  public async getById(id: string): Promise<Vehicle | null> {
+    const documentResult = await this.vehiclesCollection.findOne({ _id: new ObjectId(id) })
+    return documentResult && this.documentToVehicle(documentResult)
   }
 
   public async getByVehicleType(vehicleType: VehicleType): Promise<Vehicle[]> {

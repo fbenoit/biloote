@@ -4,4 +4,6 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.get('/rent/:vehicleType', 'RentController.show')
+Route.get('/rentals/:vehicleType', 'RentalsController.show')
+
+Route.post('/rentals/:vehicleType', 'RentalsController.new')

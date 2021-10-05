@@ -3,17 +3,17 @@
 <div>
   <h1 class="title">Louer un(e) {{ vehicleTypeName }}</h1>
 
-  <form>
+  <form method="POST" action="/rentals/{{ vehicleType }}">
     <fieldset>
       <label for="clients">Vous êtes</label>
-      <select id="clients">
+      <select id="clients" name="clientId">
         @each(client in clients)
           <option value="{{ client.id }}">{{ client.firstName }} {{ client.lastName }}</option>
         @end
       </select>
 
       <label for="vehicles">Véhicules disponibles</label>
-      <select id="vehicles">
+      <select id="vehicles" name="vehicleId">
         @each(vehicle in vehicles)
           <option value="{{ vehicle.id }}">{{ vehicle.name }}</option>
         @end
@@ -22,10 +22,10 @@
 
     <fieldset>
       <label for="startDate">Date de début</label>
-      <input type="date" id="startDate">
+      <input type="date" id="startDate" name="startDate" required>
 
       <label for="endDate">Date de fin</label>
-      <input type="date" id="endDate">
+      <input type="date" id="endDate" name="endDate" required>
     </fieldset>
 
     <input type="submit" />
