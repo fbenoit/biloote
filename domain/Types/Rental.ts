@@ -1,5 +1,5 @@
-import { Client } from './client'
-import { Vehicle } from './vehicle'
+import { Client } from './Client'
+import { Vehicle } from './Vehicle'
 
 export interface Rental {
   id?: string

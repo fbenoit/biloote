@@ -1,5 +1,5 @@
 import { Collection } from 'mongodb'
-import { Rental } from '../../domain/types/rental'
+import { Rental } from '../../domain/Types/Rental'
 import { MongoProvider } from '../../providers/MongoProvider'
 import RentalMapper from '../Mappers/RentalMapper'
 

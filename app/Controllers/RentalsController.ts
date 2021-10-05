@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { Rental } from '../../domain/types/rental'
-import { VehicleType } from '../../domain/types/vehicle'
+import { Rental } from '../../domain/Types/Rental'
+import { VehicleType } from '../../domain/Types/Vehicle'
 import ClientsRepository from '../Repositories/ClientsRepository'
 import RentalsRepository from '../Repositories/RentalsRepository'
 import VehiclesRepository from '../Repositories/VehiclesRepository'

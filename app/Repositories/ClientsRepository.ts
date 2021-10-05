@@ -1,5 +1,5 @@
 import { Collection, ObjectId } from 'mongodb'
-import { Client } from '../../domain/types/client'
+import { Client } from '../../domain/Types/Client'
 import { MongoProvider } from '../../providers/MongoProvider'
 import ClientMapper from '../Mappers/ClientMapper'
 

@@ -1,5 +1,5 @@
 import { Document } from 'bson'
-import { Vehicle } from '../../domain/types/vehicle'
+import { Vehicle } from '../../domain/Types/Vehicle'
 
 export default class VehicleMapper {
   public static fromDocument(document: Document): Vehicle {

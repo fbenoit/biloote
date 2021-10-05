@@ -1,5 +1,5 @@
 import { Document } from 'bson'
-import { Client } from '../../domain/types/client'
+import { Client } from '../../domain/Types/Client'
 
 export default class ClientMapper {
   public static fromDocument(document: Document): Client {

@@ -1,5 +1,5 @@
 import { Document } from 'bson'
-import { Rental } from '../../domain/types/rental'
+import { Rental } from '../../domain/Types/Rental'
 
 export default class RentalMapper {
   public static fromDocument(document: Document): Rental {

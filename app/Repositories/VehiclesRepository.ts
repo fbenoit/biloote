@@ -1,5 +1,5 @@
 import { Collection, ObjectId } from 'mongodb'
-import { Vehicle, VehicleType } from '../../domain/types/vehicle'
+import { Vehicle, VehicleType } from '../../domain/Types/Vehicle'
 import { MongoProvider } from '../../providers/MongoProvider'
 import VehicleMapper from '../Mappers/VehicleMapper'
 
