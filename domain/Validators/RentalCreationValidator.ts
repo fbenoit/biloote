@@ -5,7 +5,7 @@ export default class RentalCreationValidator {
     _currentAndUpcomingRentals: Rental[],
     _rentalToCreate: Rental
   ): ValidationError[] {
-    return []
+    return ['rental duration must be 24h minimum']
   }
 }
 
