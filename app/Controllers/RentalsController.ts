@@ -6,15 +6,9 @@ import RentalsRepository from '../Repositories/RentalsRepository'
 import VehiclesRepository from '../Repositories/VehiclesRepository'
 
 export default class RentalController {
-  public clientsRepository: ClientsRepository
-  public vehiclesRepository: VehiclesRepository
-  public rentalsRepository: RentalsRepository
-
-  constructor() {
-    this.clientsRepository = new ClientsRepository()
-    this.vehiclesRepository = new VehiclesRepository()
-    this.rentalsRepository = new RentalsRepository()
-  }
+  private clientsRepository = new ClientsRepository()
+  private vehiclesRepository = new VehiclesRepository()
+  private rentalsRepository = new RentalsRepository()
 
   public async show(ctx: HttpContextContract) {
     const vehicleType: VehicleType = ctx.params.vehicleType
@@ -60,7 +54,7 @@ export default class RentalController {
     }
 
     await this.rentalsRepository.create(rental)
-    return ctx.response.send({ rental })
+    return ctx.response.redirect('/')
   }
 
   private getVehicleTypeName(vehicleType: VehicleType): string {

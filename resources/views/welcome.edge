@@ -19,5 +19,27 @@
         <a href="/rentals/motorbike">🏍 Louer une moto électrique</a>
       </li>
     </ul>
+
+    @if(rentals.length > 0)
+      <h2>Locations enregistrées</h2>
+      <table>
+        <thead>
+          <td>Client</td>
+          <td>Véhicule</td>
+          <td>Date de début</td>
+          <td>Date de fin</td>
+        </thead>
+        <tbody>
+          @each(rental in rentals)
+            <tr>
+              <td>{{ rental.client.firstName }} {{ rental.client.lastName }}</td>
+              <td>{{ rental.vehicle.name }}</td>
+              <td>{{ rental.startDate }}</td>
+              <td>{{ rental.endDate }}</td>
+            </tr>
+          @end
+        </tbody>
+      </table>
+    @end
   </div>
 @end

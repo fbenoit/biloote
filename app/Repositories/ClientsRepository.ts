@@ -1,6 +1,7 @@
-import { Collection, Document, ObjectId } from 'mongodb'
+import { Collection, ObjectId } from 'mongodb'
 import { Client } from '../../domain/types/client'
 import { MongoProvider } from '../../providers/MongoProvider'
+import ClientMapper from '../Mappers/ClientMapper'
 
 export default class ClientsRepository {
   private clientsCollection: Collection
@@ -11,20 +12,11 @@ export default class ClientsRepository {
 
   public async getById(id: string): Promise<Client | null> {
     const documentResult = await this.clientsCollection.findOne({ _id: new ObjectId(id) })
-    return documentResult && this.documentToClient(documentResult)
+    return documentResult && ClientMapper.fromDocument(documentResult)
   }
 
   public async getClients(): Promise<Client[]> {
     const documentsResult = await this.clientsCollection.find().toArray()
-    return documentsResult.map(this.documentToClient)
-  }
-
-  private documentToClient(document: Document): Client {
-    return {
-      id: document._id.toString(),
-      firstName: document.firstName,
-      lastName: document.lastName,
-      licence: document.licence,
-    }
+    return documentsResult.map(ClientMapper.fromDocument)
   }
 }
