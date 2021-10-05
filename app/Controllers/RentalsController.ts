@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { Rental } from '../../domain/Types/Rental'
 import { VehicleType } from '../../domain/Types/Vehicle'
+import RentalCreationValidator from '../../domain/Validators/RentalCreationValidator'
 import ClientsRepository from '../Repositories/ClientsRepository'
 import RentalsRepository from '../Repositories/RentalsRepository'
 import VehiclesRepository from '../Repositories/VehiclesRepository'
@@ -51,6 +52,12 @@ export default class RentalController {
       vehicle,
       startDate,
       endDate,
+    }
+
+    const rentals = await this.rentalsRepository.getRentals()
+    const validationErrors = RentalCreationValidator.validate(rentals, rental)
+    if (validationErrors.length > 0) {
+      return ctx.response.send({ errors: validationErrors })
     }
 
     await this.rentalsRepository.create(rental)

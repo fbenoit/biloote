@@ -2,7 +2,7 @@ export interface Client {
   id: string
   firstName: string
   lastName: string
-  licence: ClientLicence
+  licence?: ClientLicence
 }
 
 export enum ClientLicence {

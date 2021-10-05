@@ -44,7 +44,6 @@ export class MongoProvider {
       {
         firstName: 'Jean',
         lastName: 'Lasalle',
-        licence: null,
       },
     ])
 
