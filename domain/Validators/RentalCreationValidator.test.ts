@@ -36,5 +36,24 @@ it('raises error when rental duration is less than 24h', () => {
     endDate: new Date('2021-01-01Z20:00:00'),
   })
 
-  expect(validationErrors).toEqual(['rental duration must be 24h minimum'])
+  expect(validationErrors).toContainEqual('rental duration must be 24h minimum')
+})
+
+it('raises error when rental duration is more than 7d', () => {
+  const validationErrors = RentalCreationValidator.validate([], {
+    vehicle: {
+      id: '1',
+      name: 'aName',
+      type: VehicleType.BICYCLE,
+    },
+    client: {
+      id: '1',
+      firstName: 'aFirstName',
+      lastName: 'aLastName',
+    },
+    startDate: new Date('2021-01-01'),
+    endDate: new Date('2021-01-10'),
+  })
+
+  expect(validationErrors).toContainEqual('rental duration must be 7d maximum')
 })
