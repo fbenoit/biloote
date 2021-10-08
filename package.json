@@ -8,7 +8,8 @@
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.7",

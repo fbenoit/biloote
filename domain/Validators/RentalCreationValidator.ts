@@ -21,6 +21,22 @@ export default class RentalCreationValidator {
       validationErrors.push('rentals must be 7d maximum')
     }
 
+    if (
+      rentalToCreate.vehicle.type === 'motorbike' &&
+      rentalToCreate.vehicle.ccPower > 125 &&
+      rentalToCreate.client.licence !== 'A'
+    ) {
+      validationErrors.push('client must have a A driver licence')
+    }
+
+    if (
+      (rentalToCreate.vehicle.type === 'scooter' || rentalToCreate.vehicle.type === 'motorbike') &&
+      rentalToCreate.vehicle.ccPower <= 125 &&
+      rentalToCreate.client.licence === undefined
+    ) {
+      validationErrors.push('client must have a driver licence')
+    }
+
     return validationErrors
   }
 
