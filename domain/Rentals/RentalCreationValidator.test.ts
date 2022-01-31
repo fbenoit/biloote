@@ -41,3 +41,41 @@ it('validates when end date > start date', () => {
 
   expect(validationErrors).toStrictEqual([])
 })
+
+it('validates rental is at least one day', () => {
+  const rentalToCheck: Rental = {
+    client: {
+      firstName: 'François',
+      id: 'UIID',
+      lastName: 'Hollande',
+    },
+    vehicle: {
+      id: 'VUUID',
+      name: 'Road Force One',
+      type: VehicleType.SCOOTER,
+    },
+    startDate: new Date('2022-01-01'),
+    endDate: new Date('2022-01-02'),
+  }
+  const validationErrors = RentalCreationValidator.validate(rentalToCheck)
+  expect(validationErrors).toHaveLength(0)
+})
+
+it('fails rental is less than one day', () => {
+  const rentalToCheck: Rental = {
+    client: {
+      firstName: 'François',
+      id: 'UIID',
+      lastName: 'Hollande',
+    },
+    vehicle: {
+      id: 'VUUID',
+      name: 'Road Force One',
+      type: VehicleType.SCOOTER,
+    },
+    startDate: new Date('2022-01-01 00:00:00'),
+    endDate: new Date('2022-01-01 14:00:00'),
+  }
+  const validationErrors = RentalCreationValidator.validate(rentalToCheck)
+  expect(validationErrors).toContainEqual('Rental must be at least one day')
+})

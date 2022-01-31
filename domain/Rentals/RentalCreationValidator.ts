@@ -7,7 +7,11 @@ export default class RentalCreationValidator {
     if (rentalToCreate.startDate >= rentalToCreate.endDate) {
       validationErrors.push('start date must be superior than end date')
     }
+    console.log(rentalToCreate.endDate.getTime() - rentalToCreate.startDate.getTime())
 
+    if (rentalToCreate.endDate.getTime() - rentalToCreate.startDate.getTime() < 24 * 60 * 60) {
+      validationErrors = [...validationErrors, 'Rental must be at least one day']
+    }
     return validationErrors
   }
 }
