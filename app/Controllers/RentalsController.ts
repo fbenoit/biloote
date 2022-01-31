@@ -1,7 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import RentalCreationValidator from '../../domain/Rentals/RentalCreationValidator'
 import { Rental } from '../../domain/Types/Rental'
 import { VehicleType } from '../../domain/Types/Vehicle'
-import RentalCreationValidator from '../../domain/Validators/RentalCreationValidator'
 import ClientsRepository from '../Repositories/ClientsRepository'
 import RentalsRepository from '../Repositories/RentalsRepository'
 import VehiclesRepository from '../Repositories/VehiclesRepository'
