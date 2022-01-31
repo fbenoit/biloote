@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.7",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.4.0",
     "@types/mongodb": "^4.0.7",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^7.32.0",
