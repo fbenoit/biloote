@@ -19,7 +19,7 @@ it('fails when start date >= end date', () => {
   }
   const validationErrors = RentalCreationValidator.validate(rentalToCreate)
 
-  expect(validationErrors).toStrictEqual(['start date must be superior than end date'])
+  expect(validationErrors).toContainEqual('start date must be superior than end date')
 })
 
 it('validates when end date > start date', () => {
