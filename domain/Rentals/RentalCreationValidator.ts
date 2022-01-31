@@ -14,6 +14,14 @@ export default class RentalCreationValidator {
     ) {
       validationErrors = [...validationErrors, 'Rental must be at least one day']
     }
+
+    if (
+      rentalToCreate.endDate.getTime() - rentalToCreate.startDate.getTime() >
+      7 * 24 * 60 * 60 * 1000
+    ) {
+      validationErrors = [...validationErrors, 'Rental must be at most seven days']
+    }
+
     return validationErrors
   }
 }
