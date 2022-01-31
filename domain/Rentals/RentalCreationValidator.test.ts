@@ -1,59 +1,43 @@
+import { Rental } from '../Types/Rental'
 import { VehicleType } from '../Types/Vehicle'
 import RentalCreationValidator from './RentalCreationValidator'
 
-it('validates when there is no current or upcoming rental', () => {
-  const validationErrors = RentalCreationValidator.validate([], {
-    vehicle: {
-      id: '1',
-      name: 'aName',
-      type: VehicleType.BICYCLE,
-    },
+it('fails when start date >= end date', () => {
+  const rentalToCreate: Rental = {
     client: {
       id: '1',
-      firstName: 'aFirstName',
-      lastName: 'aLastName',
+      firstName: 'a firstname',
+      lastName: 'a lastname',
     },
-    startDate: new Date('2021-01-01'),
-    endDate: new Date('2021-01-02'),
-  })
+    startDate: new Date('2021-02-01'),
+    endDate: new Date('2021-01-01'),
+    vehicle: {
+      id: '1',
+      name: 'Moto',
+      type: VehicleType.MOTORBIKE,
+    },
+  }
+  const validationErrors = RentalCreationValidator.validate(rentalToCreate)
 
-  expect(validationErrors).toHaveLength(0)
+  expect(validationErrors).toStrictEqual(['start date must be superior than end date'])
 })
 
-it('raises error when rental duration is less than 24h', () => {
-  const validationErrors = RentalCreationValidator.validate([], {
-    vehicle: {
-      id: '1',
-      name: 'aName',
-      type: VehicleType.BICYCLE,
-    },
+it('validates when end date > start date', () => {
+  const rentalToCreate: Rental = {
     client: {
       id: '1',
-      firstName: 'aFirstName',
-      lastName: 'aLastName',
-    },
-    startDate: new Date('2021-01-01Z10:00:00'),
-    endDate: new Date('2021-01-01Z20:00:00'),
-  })
-
-  expect(validationErrors).toContainEqual('rental duration must be 24h minimum')
-})
-
-it('raises error when rental duration is more than 7d', () => {
-  const validationErrors = RentalCreationValidator.validate([], {
-    vehicle: {
-      id: '1',
-      name: 'aName',
-      type: VehicleType.BICYCLE,
-    },
-    client: {
-      id: '1',
-      firstName: 'aFirstName',
-      lastName: 'aLastName',
+      firstName: 'a firstname',
+      lastName: 'a lastname',
     },
     startDate: new Date('2021-01-01'),
-    endDate: new Date('2021-01-10'),
-  })
+    endDate: new Date('2021-01-03'),
+    vehicle: {
+      id: '1',
+      name: 'Moto',
+      type: VehicleType.MOTORBIKE,
+    },
+  }
+  const validationErrors = RentalCreationValidator.validate(rentalToCreate)
 
-  expect(validationErrors).toContainEqual('rental duration must be 7d maximum')
+  expect(validationErrors).toStrictEqual([])
 })
